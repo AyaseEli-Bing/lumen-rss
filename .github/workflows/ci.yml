@@ -1,0 +1,56 @@
+name: CI
+
+# 这个项目零外部依赖，所以 CI 只需装一个 Node 就能跑完整测试套件。
+# 测试全部使用内置 test runner 与本地 mock 站点，不访问外网。
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test on Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node: ['22.x', '24.x']
+        include:
+          # 顺手验证 macOS 与 Windows 上路径处理、字符编码不出问题
+          - os: macos-latest
+            node: '22.x'
+          - os: windows-latest
+            node: '22.x'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Show environment
+        run: |
+          node -v
+          npm -v
+
+      - name: Run test suite
+        run: npm test
+
+      - name: Smoke test — start server and hit the API
+        shell: bash
+        run: |
+          node --disable-warning=ExperimentalWarning server/index.js --port 5199 --no-seed &
+          SERVER_PID=$!
+          # 等待端口就绪（最多 15 秒）
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:5199/api/health >/dev/null 2>&1; then break; fi
+            sleep 0.5
+          done
+          curl -fsS http://127.0.0.1:5199/api/health
+          echo
+          curl -fsS http://127.0.0.1:5199/ | head -5
+          kill $SERVER_PID

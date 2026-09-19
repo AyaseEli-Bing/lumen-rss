@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Lumen RSS · 订阅阅读器</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-rss" viewBox="0 0 24 24"><path d="M5 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M4 4a16 16 0 0 1 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M4 11a9 9 0 0 1 9 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3.6 2.6 5.3 5.9.86-4.25 4.14 1 5.86L12 17l-5.25 2.76 1-5.86L3.5 9.76l5.9-.86Z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h3.6l1.7 2H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.9 19.3a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.7 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.7 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.54h.09A1.7 1.7 0 0 0 10.12 3V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.46 9v.09A1.7 1.7 0 0 0 21 10.12h.09a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.56 1.03Z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></symbol>
+    <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L20 8l-4-4L4 16Z"/><path d="m14 6 4 4"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+    <symbol id="i-import" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7.5 10 4.5 4.5L16.5 10"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+  <header class="topbar">
+    <button class="icon-btn only-mobile" id="btn-sidebar" aria-label="打开订阅列表"><svg class="ic"><use href="#i-menu"/></svg></button>
+    <div class="brand">
+      <span class="brand-mark"><svg class="ic"><use href="#i-rss"/></svg></span>
+      <span class="brand-name">Lumen <b>RSS</b></span>
+    </div>
+
+    <div class="search" role="search">
+      <svg class="ic search-ic"><use href="#i-search"/></svg>
+      <input id="search-input" type="search" placeholder="搜索标题、摘要、正文…" autocomplete="off" spellcheck="false" aria-label="搜索文章">
+      <kbd class="search-kbd">/</kbd>
+      <button class="icon-btn tiny" id="search-clear" hidden aria-label="清空搜索"><svg class="ic"><use href="#i-close"/></svg></button>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="btn ghost" id="btn-mark-all" title="将当前列表全部标为已读 (Shift+A)">
+        <svg class="ic"><use href="#i-check"/></svg><span>全部已读</span>
+      </button>
+      <button class="btn ghost" id="btn-refresh" title="立即刷新到期订阅 (R)">
+        <svg class="ic spin-target"><use href="#i-refresh"/></svg><span>刷新</span>
+      </button>
+      <button class="btn primary" id="btn-add-feed" title="添加订阅 (N)">
+        <svg class="ic"><use href="#i-plus"/></svg><span>添加订阅</span>
+      </button>
+      <button class="icon-btn" id="btn-settings" title="设置" aria-label="设置"><svg class="ic"><use href="#i-settings"/></svg></button>
+    </div>
+  </header>
+
+  <div class="progress" id="progress" hidden><div class="progress-bar" id="progress-bar"></div></div>
+
+  <nav class="sidebar" id="sidebar" aria-label="订阅管理">
+    <div class="sidebar-scroll" id="sidebar-scroll"></div>
+    <div class="sidebar-foot">
+      <button class="side-action" id="btn-new-folder"><svg class="ic"><use href="#i-folder"/></svg>新建文件夹</button>
+      <button class="side-action" id="btn-opml"><svg class="ic"><use href="#i-import"/></svg>导入 / 导出 OPML</button>
+    </div>
+  </nav>
+
+  <main class="list-pane" id="list-pane">
+    <div class="pane-head">
+      <div class="pane-title-wrap">
+        <h1 class="pane-title" id="view-title">全部文章</h1>
+        <span class="pane-sub" id="view-sub"></span>
+      </div>
+      <div class="pane-tools">
+        <button class="icon-btn tiny" id="btn-sort" title="切换排序：发布时间 / 抓取时间"><svg class="ic"><use href="#i-list"/></svg></button>
+      </div>
+    </div>
+    <div class="article-scroll" id="article-scroll">
+      <ul class="article-list" id="article-list"></ul>
+      <div class="list-footer" id="list-footer"></div>
+    </div>
+  </main>
+
+  <section class="reader-pane" id="reader-pane" aria-label="文章阅读">
+    <div class="reader-empty" id="reader-empty">
+      <div class="empty-art"><svg class="ic"><use href="#i-spark"/></svg></div>
+      <h2>选一篇文章开始阅读</h2>
+      <p>用 <kbd>J</kbd> / <kbd>K</kbd> 上下移动，<kbd>Enter</kbd> 打开，<kbd>S</kbd> 收藏，<kbd>M</kbd> 标记已读。</p>
+    </div>
+    <article class="reader" id="reader" hidden>
+      <header class="reader-head">
+        <div class="reader-meta-top">
+          <a class="reader-source" id="reader-source" href="#" target="_blank" rel="noopener"></a>
+          <span class="dot-sep">·</span>
+          <time id="reader-time"></time>
+          <span id="reader-author-wrap" hidden><span class="dot-sep">·</span><span id="reader-author"></span></span>
+        </div>
+        <h1 class="reader-title" id="reader-title"></h1>
+        <div class="reader-actions">
+          <button class="icon-btn btn-back" id="btn-reader-back" title="返回列表" aria-label="返回列表"><svg class="ic"><use href="#i-prev"/></svg></button>
+          <button class="btn ghost sm" id="btn-star"><svg class="ic"><use href="#i-star"/></svg><span>收藏</span></button>
+          <button class="btn ghost sm" id="btn-toggle-read"><svg class="ic"><use href="#i-dot"/></svg><span>标记未读</span></button>
+          <a class="btn ghost sm" id="btn-original" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-external"/></svg><span>原文</span></a>
+          <div class="spacer"></div>
+          <button class="icon-btn tiny" id="btn-font-down" title="缩小字号">A−</button>
+          <button class="icon-btn tiny" id="btn-font-up" title="放大字号">A+</button>
+          <button class="icon-btn tiny" id="btn-prev" title="上一篇 (K)"><svg class="ic"><use href="#i-prev"/></svg></button>
+          <button class="icon-btn tiny" id="btn-next" title="下一篇 (J)"><svg class="ic"><use href="#i-next"/></svg></button>
+        </div>
+      </header>
+      <div class="reader-body" id="reader-body"></div>
+      <footer class="reader-foot">
+        <button class="btn ghost sm" id="btn-open-original-foot">在浏览器中打开原文</button>
+      </footer>
+    </article>
+  </section>
+
+  <div class="scrim" id="scrim" hidden></div>
+</div>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <header class="modal-head">
+      <h2 id="modal-title">标题</h2>
+      <button class="icon-btn tiny" id="modal-close" aria-label="关闭"><svg class="ic"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="modal-body" id="modal-body"></div>
+    <footer class="modal-foot" id="modal-foot"></footer>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
