@@ -10,7 +10,8 @@ on:
 
 jobs:
   test:
-    name: Test on Node ${{ matrix.node }}
+    # 名称里带上平台，否则矩阵里多个 job 会重名，Actions 界面无法区分
+    name: ${{ matrix.os }} · Node ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
