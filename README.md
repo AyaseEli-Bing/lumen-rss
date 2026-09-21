@@ -1,6 +1,6 @@
 # Lumen RSS
 
-[![CI](https://github.com/AyaseElibing/lumen-rss/actions/workflows/ci.yml/badge.svg)](https://github.com/AyaseElibing/lumen-rss/actions/workflows/ci.yml)
+[![CI](https://github.com/AyaseEli-Bing/lumen-rss/actions/workflows/ci.yml/badge.svg)](https://github.com/AyaseEli-Bing/lumen-rss/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Node](https://img.shields.io/badge/node-%3E%3D22.5-3fb950.svg)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-3fb950.svg)
